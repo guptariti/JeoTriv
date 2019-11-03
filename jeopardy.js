@@ -1,5 +1,6 @@
 window.onload = scriptMain;
 var jeopardy = [];
+var rndmNums = [];
 var loadingCircles;
 var clueDiv;
 var clueRow;
@@ -15,10 +16,10 @@ var numberWrong = 0;
 clueDiv = document.createElement("div");
 var answerBox;
 answerBox = document.createElement("div");
-for (var i=0; i < 6; i++) {
+for (var i = 0; i < 6; i++) {
   jeopardy.push([]);
-  for(var j=0; j<5; j++) {
-    if(i!=0) {
+  for (var j = 0; j < 5; j++) {
+    if (i != 0) {
       jeopardy[i].push({});
     }
   }
@@ -33,25 +34,21 @@ function scriptMain() {
     var x = setInterval(function() {
       displayLoadScreen(ctx);
       console.log(dataFound);
-      if(dataFound) {
+      if (dataFound) {
         loadingScreen.style.visibility = "hidden";
         clearInterval(x);
-        // clearInterval(y);
         resolve();
-       
+
       }
-      // reject("hey!");
     }, 5);
   });
 
   p.then(function() {
-    console.log("hey!");
-   
+
   }).catch(function() {
     createJeopardyGrid();
   });
 
-  //move to init function
   clueButtons = document.createElement("div");
   clueButtons.id = "clueButtons";
   var rightButton = document.createElement("div");
@@ -66,70 +63,68 @@ function scriptMain() {
   clueButtons.appendChild(rightButton);
 
 }
-  // document.body.style.background = "blue";
 
-  async function displayGrid() {
-    var increment = 0;
-    var value = 0;
-    while (increment < 5) {
-      var genRandom = Math.floor(Math.random() * 18419);
+//displayGrid: Get info necessary to construct Jeopardy grid
+async function displayGrid() {
+  var increment = 0;
+  var value = 0;
+  while (increment < 5) {
+    var genRandom = Math.floor(Math.random() * 18418) + 1;
+    while (rndmNums.includes(genRandom)) {
+      genRandom = Math.floor(Math.random() * 18418) + 1;
+    }
+    rndmNums.push(genRandom);
 
-      var result = await fetch('https://cors-anywhere.herokuapp.com/http://jservice.io/api/category?/&id=' + String(genRandom));
+    var result = await fetch('https://cors-anywhere.herokuapp.com/http://jservice.io/api/category?/&id=' + String(genRandom));
 
-
-//console.log(result);
-     // Examine the text in the response
-     var data = await result.json()
-     //console.log(JSON.stringify(data));
-     if(JSON.stringify(data['clues_count']) >= 5 && JSON.stringify(data).includes('"value":200') && JSON.stringify(data).includes('"value":400') && JSON.stringify(data).includes('"value":600') && JSON.stringify(data).includes('"value":800') && JSON.stringify(data).includes('"value":1000'))
-     {
+    // Examine the text in the response
+    var data = await result.json();
+    if (JSON.stringify(data['clues_count']) >= 5 && JSON.stringify(data).includes('"value":200') && JSON.stringify(data).includes('"value":400') && JSON.stringify(data).includes('"value":600') && JSON.stringify(data).includes('"value":800') && JSON.stringify(data).includes('"value":1000')) {
       jeopardy[0][increment] = (data['title']);
       var k = 0;
       while (k < data['clues_count']) {
         value = data['clues'][k]['value'];
-        switch(value) {
+        switch (value) {
           case 200:
-          jeopardy[1][increment].clue = data['clues'][k]['question'];
-          jeopardy[1][increment].answer = data['clues'][k]['answer'];
-          jeopardy[1][increment].pointValue = value;
-          break;
+            jeopardy[1][increment].clue = data['clues'][k]['question'];
+            jeopardy[1][increment].answer = data['clues'][k]['answer'];
+            jeopardy[1][increment].pointValue = value;
+            break;
           case 400:
-          jeopardy[2][increment].clue = data['clues'][k]['question'];
-          jeopardy[2][increment].answer = data['clues'][k]['answer'];
-          jeopardy[2][increment].pointValue = value;
-          break;
+            jeopardy[2][increment].clue = data['clues'][k]['question'];
+            jeopardy[2][increment].answer = data['clues'][k]['answer'];
+            jeopardy[2][increment].pointValue = value;
+            break;
           case 600:
-          jeopardy[3][increment].clue = data['clues'][k]['question'];
-          jeopardy[3][increment].answer = data['clues'][k]['answer'];
-          jeopardy[3][increment].pointValue = value;
-          break;
+            jeopardy[3][increment].clue = data['clues'][k]['question'];
+            jeopardy[3][increment].answer = data['clues'][k]['answer'];
+            jeopardy[3][increment].pointValue = value;
+            break;
           case 800:
-          jeopardy[4][increment].clue = data['clues'][k]['question'];
-          jeopardy[4][increment].answer = data['clues'][k]['answer'];
-          jeopardy[4][increment].pointValue = value;
-          break;
+            jeopardy[4][increment].clue = data['clues'][k]['question'];
+            jeopardy[4][increment].answer = data['clues'][k]['answer'];
+            jeopardy[4][increment].pointValue = value;
+            break;
           case 1000:
-          jeopardy[5][increment].clue = data['clues'][k]['question'];
-          jeopardy[5][increment].answer = data['clues'][k]['answer'];
-          jeopardy[5][increment].pointValue = value;
-          break;
+            jeopardy[5][increment].clue = data['clues'][k]['question'];
+            jeopardy[5][increment].answer = data['clues'][k]['answer'];
+            jeopardy[5][increment].pointValue = value;
+            break;
           default:
-          console.log("None found!");
-          break;
+            console.log("None found!");
+            break;
         } // end switch
-       k++;
+        k++;
 
       } //end clues traverser
       increment++;
-     
-    } //end "if" filter condition
-   
-  } //end increment category
-  dataFound = true;
-  //createJeopardyGrid();
-}
-// console.log(jeopardy);
 
+    } //end "if" filter condition
+  }
+  dataFound = true;
+}
+
+//createJeopardyGrid: Displays the jeopardy grid
 function createJeopardyGrid() {
   clueDiv.id = "clueDiv";
   document.body.appendChild(clueDiv);
@@ -140,16 +135,16 @@ function createJeopardyGrid() {
   const nbrOfColumns = 5;
   var cell;
   var getGrid = document.getElementById("grid");
-  for(var r=0; r<nbrOfRows; r++) {
-    for(var c=0; c<nbrOfColumns; c++) {
+  for (var r = 0; r < nbrOfRows; r++) {
+    for (var c = 0; c < nbrOfColumns; c++) {
       cell = document.createElement("div");
 
-      if(r == 0) {
+      if (r == 0) {
         cell.innerHTML = "<p>" + jeopardy[r][c].toUpperCase() + "</p>";
         cell.style.color = "white";
       } else {
         cell.style.cursor = "pointer";
-        cell.innerHTML = "<p>" + 200*r + "</p>";
+        cell.innerHTML = "<p>" + 200 * r + "</p>";
         cell.style.color = "white";
       }
       cell.addEventListener('click', showClue);
@@ -161,6 +156,8 @@ function createJeopardyGrid() {
   }
   createScoreBar();
 }
+
+//createScoreBar: Creates score bar to be appended to grid
 function createScoreBar() {
   const getGrid = document.getElementById("grid");
   var scoreBar = document.createElement("div");
@@ -188,6 +185,8 @@ function createScoreBar() {
   getGrid.appendChild(scoreBar);
 
 }
+
+//showClue: Displayes clue when value is clicked on
 function showClue() {
   if (this.row != 0 && this.answered == false) {
     this.answered = true;
@@ -196,154 +195,122 @@ function showClue() {
     clueDiv.innerHTML = jeopardy[this.row][this.column].clue.toUpperCase();
     buildTimer();
     clueDiv.appendChild(answerBox);
-   
+
     clueRow = this.row;
     clueColumn = this.column;
     timeLeft = 11;
-
-    // var test = document.createElement("div");
-    // test.textContent = "we in here!";
-    // test.style.border = "1px solid black";
-    // clueDiv.appendChild(test);
     var ctx = document.getElementById("timer").getContext('2d');
     z = setInterval(function() {
-        // // console.log(--timeLeft);
-        // // timerBar.childNodes[Math.abs(5-timeLeft+1)].style.background = "black";
-        // console.log(--timeLeft);
-        // // timerBar.childNodes[9-Math.abs(5-timeLeft+1)].style.background = "black";
-        drawTimer(ctx, --timeLeft);
 
-        if(timeLeft==0) {
-          // clearInterval(z); //make z global and allow interval to be cleared oninput
-           showAnswer();
-        }
+      drawTimer(ctx, --timeLeft);
+
+      if (timeLeft == 0) {
+        showAnswer();
+      }
     }, 1000);
- 
+
   }
 }
 
+
+//showAnswer: Replaces clueDiv text with the answers
 function showAnswer() {
   clearInterval(z);
   clueDiv.innerHTML = jeopardy[clueRow][clueColumn].answer.toUpperCase();
   clueDiv.appendChild(clueButtons);
- 
-  // if(timeLeft == 0) {
-  //   score -=  jeopardy[clueRow][clueColumn].value;
-  // } else {
-  //   score +=  jeopardy[clueRow][clueColumn].value;
-   
-  // }
- 
-
-  // clueDiv.style.textAlign = "center";
 }
 
+//displayLoadScreen: Display the loading screen
 function displayLoadScreen(ctx) {
   angle = angle + .1;
-  ctx.clearRect(-window.innerWidth/2, -window.innerHeight/2, window.innerWidth, window.innerHeight);
+  ctx.clearRect(-window.innerWidth / 2, -window.innerHeight / 2, window.innerWidth, window.innerHeight);
   ctx.beginPath();
-  ctx.arc(50*Math.cos(angle), 50*Math.sin(angle), 10, 0, 2*Math.PI);
+  ctx.arc(50 * Math.cos(angle), 50 * Math.sin(angle), 10, 0, 2 * Math.PI);
   ctx.stroke();
-  ctx.closePath();                          
+  ctx.closePath();
 }
 
+//initCanvas: Initialize canvas for loading screen
 function initCanvas(canvas, ctx) {
   canvas.style.position = "absolute";
   canvas.style.left = 0;
   canvas.style.top = 0;
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
-  ctx.translate(window.innerWidth/2,window.innerHeight/2);
+  ctx.translate(window.innerWidth / 2, window.innerHeight / 2);
   canvas.style.border = "1px solid black";
   ctx.strokeStyle = "white";
 }
 
-
-   
-
+//buildTimer: Build the initial state of the timer and add it to the clueDiv
 function buildTimer() {
-    var timer = document.createElement("canvas");
-    var ctx = timer.getContext('2d');
-    timer.id = "timer";
-    timer.width = 300;
-    timer.height = 300;
-    ctx.translate(150,150);
-    ctx.lineWidth = 10;
-    ctx.strokeStyle = "white";
-    var increment = 36*Math.PI/180;
-    var prevAngle = 0;
-    
-    
+  var timer = document.createElement("canvas");
+  var ctx = timer.getContext('2d');
+  timer.id = "timer";
+  timer.width = 300;
+  timer.height = 300;
+  ctx.translate(150, 150);
+  ctx.lineWidth = 10;
+  ctx.strokeStyle = "white";
+  var increment = 36 * Math.PI / 180;
+  var prevAngle = 0;
 
-    for(var i = 0; i < 10; i++) {
-      ctx.beginPath();
-      console.log(prevAngle);
-      ctx.arc(0,0,75, prevAngle, (prevAngle + increment-.25));
-      console.log(prevAngle+increment-.25);
-      prevAngle = prevAngle + increment;
-      console.log(prevAngle);
-      ctx.stroke();
-      ctx.closePath();
-      
-    }
-    
 
-    // const timerBar = document.createElement("div");
-    // // timerBar.style.border = "1px solid black";
-    // timerBar.id = "timerBar";
-    // var div;
-    // for(var i = 0; i<9; i++) {
-    //     div = document.createElement("div");
-    //     // div.textContent = "heyo";
-    //     timerBar.appendChild(div);
-       
-    // }
-    clueDiv.appendChild(timer);
+
+  for (var i = 0; i < 10; i++) {
+    ctx.beginPath();
+    ctx.arc(0, 0, 75, prevAngle, (prevAngle + increment - .25));
+    prevAngle = prevAngle + increment;
+    ctx.stroke();
+    ctx.closePath();
+
+  }
+
+  clueDiv.appendChild(timer);
 }
 
+//drawTimer: Draw the timer based on the amount of time left
 function drawTimer(ctx, timeLeft) {
-    ctx.clearRect(-150, -150, 300, 300);
-    var increment = 36*Math.PI/180;
-    var prevAngle = 0;
-    
-    
+  ctx.clearRect(-150, -150, 300, 300);
+  var increment = 36 * Math.PI / 180;
+  var prevAngle = 0;
 
-    for(var i = 0; i < timeLeft-1; i++) {
-      ctx.beginPath();
-      console.log(prevAngle);
-      ctx.arc(0,0,75, prevAngle, (prevAngle + increment-.25));
-      console.log(prevAngle+increment-.25);
-      prevAngle = prevAngle + increment;
-      console.log(prevAngle);
-      ctx.stroke();
-      ctx.closePath();
-      
-    }
+
+
+  for (var i = 0; i < timeLeft - 1; i++) {
+    ctx.beginPath();
+    ctx.arc(0, 0, 75, prevAngle, (prevAngle + increment - .25));
+    prevAngle = prevAngle + increment;
+    ctx.stroke();
+    ctx.closePath();
+
+  }
 }
 
+//correct: Runs when user clicks "I was right" and adjusts score accordingly
 function correct() {
   clueDiv.style.visibility = "hidden";
-  score +=  jeopardy[clueRow][clueColumn].pointValue;
+  score += jeopardy[clueRow][clueColumn].pointValue;
   document.getElementById("correctBox").textContent = "Number Right: " + (++numberCorrect);
   document.getElementById("scoreBox").textContent = "Score: " + score;
-  if(numberCorrect + numberWrong == 25) {
+  if (numberCorrect + numberWrong == 25) {
     endGame();
   }
 }
 
+//wrong: Runs when user clicks "I was wrong" and adjusts score accordingly
 function wrong() {
   clueDiv.style.visibility = "hidden";
-  // console.log(jeopardy[clueRow][clueColumn].value);
-  score -=  jeopardy[clueRow][clueColumn].pointValue;
+  score -= jeopardy[clueRow][clueColumn].pointValue;
   document.getElementById("incorrectBox").textContent = "Number Wrong: " + (++numberWrong);
   document.getElementById("scoreBox").textContent = "Score: " + score;
-  if(numberCorrect + numberWrong == 25) {
+  if (numberCorrect + numberWrong == 25) {
     endGame();
   }
 }
 
+//endGame: Displays final score and gives user option to return home or play again
 function endGame() {
-  console.log("heyo")
   var endGame = document.createElement("div");
   var endOptions = document.createElement("div");
   var returnHome = document.createElement("div");
@@ -351,7 +318,6 @@ function endGame() {
   endOptions.id = "endOptions";
   returnHome.id = "returnHome";
   returnHome.addEventListener("click", function() {
-    //link to the home page! aint it some location.replace type beat?
     window.location.assign("google.com");
   });
   returnHome.textContent = "Return Home"
@@ -363,8 +329,8 @@ function endGame() {
   endOptions.appendChild(returnHome);
   endOptions.appendChild(playAgain);
   endGame.id = "endGame";
-  var string = "Game Over<br>Number Correct: " + numberCorrect + "<br>Number Wrong: " + numberWrong + "<br>Score: " + score;
-  endGame.innerHTML = string.toUpperCase();
+  var string = "Game Over<br><br>Number Correct: " + numberCorrect + "<br><br>Number Wrong: " + numberWrong + "<br><br>Score: " + score;
+  endGame.innerHTML = string;
   endGame.style.position = "fixed";
   endGame.appendChild(endOptions);
   document.body.appendChild(endGame);

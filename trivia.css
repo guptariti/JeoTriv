@@ -40,23 +40,16 @@ h1 {
 	top:18%;
 	width: 80%;
 	margin-left:-40%;
-	/*justify-content: */
 	align-items: center;
 	justify-content: space-around;
-	/*border:1px solid white;*/
 
 }
 
 #bigDiv {
 	display:flex;
 	flex-direction: row;
-	/*position:absolute;*/
 	width: 10rem;
-	/*left: 50%;*/
-	/*margin-left: -5rem;*/
-	/*top:18%;*/
 	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-	/*border: 1px solid white;*/
 	justify-content: center;
 }
 #bigDiv > div {
@@ -91,144 +84,144 @@ h1 {
 	/*top: 33%;*/
 	/*width: 60rem;*/
 	/*height:50%;*/
-					/*left: 50%;
-					margin-left: -30rem;*/
-					padding:10px;
-					background-color: transparent;
-					color:white;
-					font-size: 25px;
-					font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-					text-align: center;
-					visibility: hidden;
-					vertical-align: middle;
-				}
+	/*left: 50%;
+	margin-left: -30rem;*/
+	padding:10px;
+	background-color: transparent;
+	color:white;
+	font-size: 25px;
+	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	text-align: center;
+	visibility: hidden;
+	vertical-align: middle;
+}
 
-				#questionText {
-					flex:1;
-				}
+#questionText {
+	flex:1;
+}
 
-				#buttons {
-					display: flex;
-					flex-direction: row;
-					justify-content: center;
+#buttons {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
 
-				}
-				#buttons > button {
-					margin-left: 10px;
-					padding: 1rem 4rem
-				}
-				#answerbtn {
-					display: inline-block;
+}
+#buttons > button {
+	margin-left: 10px;
+	padding: 1rem 4rem
+}
+#answerbtn {
+	display: inline-block;
 
-					font-size: .6em;
-					font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-					border-radius: 4px;
-					background: rgba(0,200,200,.7);
-					color: white;
-					/*box-shadow: 0px 0px 0px rgba( 15, 165, 60, 0.1 );*/
-
-
-				}
-
-				#nextQuest {
-					display: inline-block;
-					font-size: .6em;
-					font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-					border-radius: 4px;
-					background: rgba(0,200,200,.7);
-					color: white;
-					/*box-shadow: 0px 0px 0px rgba( 15, 165, 60, 0.1 );*/
-
-				}
-
-				#backBtn {
-					display: inline-block;
-					font-size: .6em;
-					font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-					border-radius: 4px;
-					background: rgba(0,200,200,.7);
-					color: white;
-					/*box-shadow: 0px 0px 0px rgba( 15, 165, 60, 0.1 );*/
+	font-size: .6em;
+	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	border-radius: 4px;
+	background: rgba(0,200,200,.7);
+	color: white;
+	/*box-shadow: 0px 0px 0px rgba( 15, 165, 60, 0.1 );*/
 
 
-				}
+}
 
-				.flex-container {
-					display: flex;
-					flex-direction: column;
-					border:1px solid white;
-					color:white;
-					text-align: center;
-					padding:10px;
-				}
+#nextQuest {
+	display: inline-block;
+	font-size: .6em;
+	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	border-radius: 4px;
+	background: rgba(0,200,200,.7);
+	color: white;
+	/*box-shadow: 0px 0px 0px rgba( 15, 165, 60, 0.1 );*/
 
-				.flex-container > div {
-					background-color: #f1f1f1;
-					width: 100px;
-					margin: 10px;
-					text-align: center;
-					line-height: 75px;
-					font-size: 30px;
-				}
+}
 
-				#popup {
-					position: absolute;
-					text-align: center;
-					padding: 10px;
-					height: 100px;
-					width: 600px;
-					opacity = 1;
-					background-color: none;
-					top: 45%;
-					visibility: hidden;
-
-				}
+#backBtn {
+	display: inline-block;
+	font-size: .6em;
+	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	border-radius: 4px;
+	background: rgba(0,200,200,.7);
+	color: white;
+	/*box-shadow: 0px 0px 0px rgba( 15, 165, 60, 0.1 );*/
 
 
-				#message {
-					color:white;
-					font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
-					font-size:30px;
-				}
+}
 
-				#message1 {
+.flex-container {
+	display: flex;
+	flex-direction: column;
+	border:1px solid white;
+	color:white;
+	text-align: center;
+	padding:10px;
+}
 
-				}
+.flex-container > div {
+	background-color: #f1f1f1;
+	width: 100px;
+	margin: 10px;
+	text-align: center;
+	line-height: 75px;
+	font-size: 30px;
+}
 
-				#title {
-					cursor: pointer;
-				}
+#popup {
+	position: absolute;
+	text-align: center;
+	padding: 10px;
+	height: 100px;
+	width: 600px;
+	opacity = 1;
+	background-color: none;
+	top: 45%;
+	visibility: hidden;
 
-				#favoritesbtn {
-					font-size: 50px;
-					cursor: pointer;
-					user-select: none;
-					/*padding:5px;*/
-					/*border: 1px solid white;*/
-					color:white;
-					align-self: center;
-				}
+}
 
 
-				#heartbtn {
-					font-size: 50px;
-					cursor: pointer;
-					user-select: none;
-					color:white;
-				}
+#message {
+	color:white;
+	font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	font-size:30px;
+}
 
-				#heartbtn:hover {
-					color:red;
-				}
-				#favQuest {
-					margin-left:8px;
-					padding: 5px 40px;
-					font-size: 15px;
-					font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-					transition: all 0.3s ease-out;
-					border-radius: 2px;
-					/*background: rgba( 22, 230, 137, 1 );*/
-					background:rgba(0,200,200,.7);
-					color: white;
+#message1 {
 
-				}
+}
+
+#title {
+	cursor: pointer;
+}
+
+#favoritesbtn {
+	font-size: 50px;
+	cursor: pointer;
+	user-select: none;
+	/*padding:5px;*/
+	/*border: 1px solid white;*/
+	color:white;
+	align-self: center;
+}
+
+
+#heartbtn {
+	font-size: 50px;
+	cursor: pointer;
+	user-select: none;
+	color:white;
+}
+
+#heartbtn:hover {
+	color:red;
+}
+#favQuest {
+	margin-left:8px;
+	padding: 5px 40px;
+	font-size: 15px;
+	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	transition: all 0.3s ease-out;
+	border-radius: 2px;
+	/*background: rgba( 22, 230, 137, 1 );*/
+	background:rgba(0,200,200,.7);
+	color: white;
+
+}
