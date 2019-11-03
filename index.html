@@ -1,0 +1,116 @@
+<!DOCTYPE HTML>
+	<head>
+		<script src="data.js"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	</head>
+	<html>
+	<body>
+		<h1>JEOTRIV</h1>
+		<div id = "homeButtons">
+		<button id="trivbtn">Trivia!</button>
+		<button id="jepbtn">Jeopardy!</button>
+	</div>
+		<script>
+			var getTrivBtn = document.getElementById("trivbtn");
+			getTrivBtn.onclick = function() {
+				window.location = "triviawelcome.html";
+			}
+			var getJepBtn = document.getElementById("jepbtn");
+			getJepBtn.onclick = function() {
+				window.location = "testertypebeat.html";
+			}
+		</script>
+		<style>
+			body {
+				background: #009FFF;  /* fallback for old browsers */
+				background: -webkit-linear-gradient(to right, #ec2F4B, #009FFF);  /* Chrome 10-25, Safari 5.1-6 */
+				background: linear-gradient(to right, #ec2F4B, #009FFF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+			}
+			#homeButtons {
+				display: flex;
+				position:absolute;
+				flex-direction: row;
+				width:20rem;
+				left:50%;
+				margin-left: -10rem;
+				/*height:5vw;*/
+				top:45%;
+				margin-top: -2.5vw;
+				justify-content: space-between;
+			}
+
+			#homeButtons > button {
+				padding:1rem;
+			}
+
+			h1 {
+				color:white;
+				text-align: center;
+				height: 200px;
+    			width: 400px;
+    			position: absolute;
+    			top: 40%;
+    			left: 50%;
+    			margin-top: -100px;
+    			margin-left: -200px;
+    			font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    			font-size: 50px;
+    			letter-spacing: 8px;
+    			word-spacing: 2px;
+    			font-weight: normal;
+    			text-decoration: none;
+    			font-style: normal;
+    			font-variant: normal;
+    			text-transform: none;
+			}
+
+			#trivbtn {
+				/*position: fixed;
+				top: 37%;
+    			left: 38%;*/
+			    background-color: transparent;
+			    color:white;
+			    background-repeat:no-repeat;
+			    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+			    font-size: 1.75em;
+			    border: solid 1px white;
+			    /*padding: 10px 30px;*/
+			    /*padding:15rem;*/
+			    cursor:pointer;
+			    overflow: hidden;
+			    outline:none;
+			    -webkit-transition-duration: 0.4s; /* Safari */
+			    transition-duration: 0.4s;
+			}
+
+			#trivbtn:hover {
+				color:#000000;
+				background-color:#FFFFFF;
+			}
+
+			#jepbtn {
+				/*position: fixed;
+				top: 37%;
+    			left: 50%;*/
+			    background-color: transparent;
+			    color:white;
+			    background-repeat:no-repeat;
+			    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+			    font-size: 1.75em;
+			    border: solid 1px white;
+			    /*padding: 10px 20px;*/
+			    /*padding:1rem;*/
+			    cursor:pointer;
+			    overflow: hidden;
+			    outline:none;
+			    -webkit-transition-duration: 0.4s; /* Safari */
+			    transition-duration: 0.4s;
+			}
+
+			#jepbtn:hover {
+				color:#000000;
+				background-color:#FFFFFF;
+			}
+		</style>
+	</body>
+	</html>

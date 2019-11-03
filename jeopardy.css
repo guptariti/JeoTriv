@@ -1,0 +1,180 @@
+#grid {
+  display: grid;
+  
+  	position:fixed;
+    padding:0;
+    margin:0;
+
+    top:0;
+    left:0;
+
+    width: 100%;
+    height: 100%;
+    
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    background: #009FFF;  /* fallback for old browsers */
+	background: -webkit-linear-gradient(to right, #ec2F4B, #009FFF);  /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to right, #ec2F4B, #009FFF);
+}
+
+body {
+	margin: 0;
+}
+#loadingScreen {
+	z-index: 100;
+}
+
+#clueButtons {
+	display: flex;
+	flex-direction: row;
+	/*border: 1px solid black;*/
+	width:50%;
+	justify-content: space-between;
+}
+
+#clueButtons > div {
+	padding: 10px;
+	border: 1px solid white;
+	cursor: pointer;
+	border-radius: 5px;
+}
+
+
+#scoreBar > div {
+	flex:1;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+	border: 1px solid white;
+}
+
+#timerBar {
+	z-index: 100;
+	align-self: flex-end;
+}
+
+#clueDiv {
+	display: flex;
+	visibility: hidden;
+	position:fixed;
+    /*padding:12px;*/
+    margin:0;
+
+    top:0;
+    left:0;
+
+    width: 100%;
+    height: 100%;
+    background: #009FFF;  /* fallback for old browsers */
+	background: -webkit-linear-gradient(to right, #ec2F4B, #009FFF);  /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to right, #ec2F4B, #009FFF); ;
+    font-family: 'Stoke', serif;
+    font-size: 25px;
+    color: white;
+    text-align: center;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+
+}
+
+#clueDiv > * {
+	margin:10px;
+}
+
+#timerBar {
+	display:flex;
+	flex-direction: row;
+	border: 1px solid white;
+	margin-left:50px;
+	width: 100vw;
+	height:100px;
+	/*flex:1;*/
+	/*margin-top:200px;*/
+}
+
+#timerBar > div {
+	flex:1;
+	border:3px solid silver;
+	background: red;
+}
+
+div > p {
+	width:100%;
+	margin:0;
+}
+
+#grid>div {
+	/*cursor: pointer;*/
+	display:flex;
+	align-items: center;
+	text-align: center;
+	border: 3px solid white;
+	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	/*font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;*/
+	font-size: 25px;
+	padding: 3px;
+	/*background: blue;*/
+	/*padding: 5px;*/
+	/*border:1px solid blue;*/
+}
+
+#endGame {
+	position:fixed;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	background-color: blue;
+	color:white;
+	padding:10px;
+	height: 50vh;
+  	width: 50vw;
+  	left: 50%;
+  	margin-left: -25vw;
+  	top: 50%;
+  	margin-top: -25vh;
+  	border: 1px solid white;
+  	font-family: "Stoke";
+  	font-size: 2em;
+
+}
+
+#scoreBar {
+	grid-column: 1/span 5;
+	cursor: default;
+}
+
+#scoreBar { 
+	color:white;
+	display: flex;
+	grid-column: 1 / -1;
+	flex-direction: row;
+	cursor: default;
+	/*align-items: center;
+	justify-content: center;*/
+}
+
+#answerBox {
+	cursor: pointer;
+	border: 1px solid white;
+	border-radius: 5px;
+	padding:10px;
+}
+
+#endOptions {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+	width:100%;
+	margin-top: 10px;
+
+}
+
+#endOptions > div {
+	border: 1px solid white;
+	border-radius: 5px;
+}
