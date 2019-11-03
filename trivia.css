@@ -25,13 +25,21 @@ h1 {
 	text-transform: none;
 }
 
+/*#biggerDiv {
+	display:flex;
+	align-items: center;
+	flex-direction: column;
+	border: 1px solid white;
+}*/
+
 #largeDiv {
 	display:flex;
 	flex-direction: column;
 	position:absolute;
-	left:0;
+	left:50%;
 	top:18%;
 	width: 80%;
+	margin-left:-40%;
 	/*justify-content: */
 	align-items: center;
 	justify-content: space-around;
